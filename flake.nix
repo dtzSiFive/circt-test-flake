@@ -25,12 +25,12 @@
          pkgs = nixpkgs.legacyPackages.${system};
          circt = circt-nix.packages.${system};
          in {
-         packages = {
-          default = import ./test.nix {
-            inherit circt firrtl-src;
-            inherit (pkgs) lib time runCommand;
-          };
-         };
+         packages = rec {
+           results = import ./test.nix {
+             inherit circt firrtl-src;
+             inherit (pkgs) lib time runCommand;
+           };
+          default = results.circt-pp; }; 
        });
 
 #        let pkgs = nixpkgs.legacyPackages.${system};

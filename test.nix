@@ -18,4 +18,7 @@ let
     '';
   inputs = "${firrtl-src}/regress";
 in
-   runOnInputs circt.circt inputs
+{
+  circt = runOnInputs circt.circt inputs;
+  circt-pp = runOnInputs circt.circt-pp inputs;
+}
