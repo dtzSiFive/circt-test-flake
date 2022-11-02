@@ -3,7 +3,7 @@
 
 
   inputs = {
-    circt-nix.url = "github:llvm/circt";
+    circt-nix.url = "github:dtzSiFive/circt-nix";
     firrtl-src.url = "github:chipsalliance/firrtl";
     firrtl-src.flake = false;
 
