@@ -5,7 +5,13 @@ let
   runOnInputs = circt: input_dir:
     runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin circt) ]; } ''
       firtool --version
-      exit 1
+
+      mkdir -p $out
+      for x in ${input_dir}/*.fir; do
+        BASE="$(basename $x)"
+        OUT="$out/$BASE"
+        \time -v firtool "$x" -o "$OUT.sv" |& tee "$OUT.log"
+      done
     '';
   inputs = "${firrtl-src}/regress";
 in
