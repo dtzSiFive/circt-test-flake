@@ -27,10 +27,12 @@ let
         a_d="${a}/$d"
         b_d="${b}/$d"
         o_d="$out/$d"
+
         mkdir -p "$o_d"
         diffoscope --no-default-limits "$a_d/$d.sv" "$b_d/$d.sv" \
           --markdown "$o_d/$d.md" \
-          --html "$o_d/$d.html"
+          --html "$o_d/$d.html" \
+          || (echo "Files are different, see output files for details")
       done
     '';
 in
