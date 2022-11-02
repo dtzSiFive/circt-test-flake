@@ -33,7 +33,7 @@ let
           --max-page-diff-block-lines 100000 \
           --markdown "$o_d/$d.md" \
           --html "$o_d/$d.html" \
-          --text "$o_d/$d.txt" \
+          --text "$o_d/$d.diff" \
           || (echo "Files are different, see output files for details")
       done
     '';
