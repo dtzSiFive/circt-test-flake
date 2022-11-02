@@ -1,7 +1,6 @@
 {
   description = "Run CIRCT on FIRRTL regression files";
 
-
   inputs = {
     circt-nix.url = "github:dtzSiFive/circt-nix";
     firrtl-src.url = "github:chipsalliance/firrtl";
@@ -20,7 +19,7 @@
     , nixpkgs
     , flake-compat, flake-utils
     , firrtl-src
-    }: flake-utils.lib.eachDefaultSystem
+    }: flake-utils.lib.eachSystem [ "x86_64-linux" /* "x86_64-darwin" */ ]
       (system: let
          pkgs = nixpkgs.legacyPackages.${system};
          circt = circt-nix.packages.${system};
