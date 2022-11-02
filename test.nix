@@ -1,8 +1,9 @@
-{ runCommand, circt, firrtl-src }:
+{ lib, runCommand
+, circt, firrtl-src }:
 
 let
   runOnInputs = circt: input_dir:
-    runCommand "test-outputs" { nativeBuildInputs = [ circt ]; } ''
+    runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin circt) ]; } ''
 firtool --version
 exit 1
     '';
