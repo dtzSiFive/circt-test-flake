@@ -11,7 +11,9 @@ let
         BASE="$(basename $x .fir)"
         OUT="$out/$BASE"
         mkdir -p $"$OUT"
-        \time -v firtool "$x" -o "$OUT/$BASE.sv" |& tee "$OUT/$BASE.log"
+        \time -v firtool "$x" -o "$OUT/$BASE.sv" \
+          -mlir-timing -verbose-pass-executions \
+          |& tee "$OUT/$BASE.log"
       done
     '';
   inputs = "${firrtl-src}/regress";
