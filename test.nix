@@ -22,7 +22,7 @@ let
   # TODO: control/other outputs, better interface.
   diffEach = a: b: 
     runCommand "diff-outputs" { nativeBuildInputs = [ diffoscope ]; } ''
-      diffoscope --no-default-limits --max-page-diff-block-lines 100000 "${a}" "${b}" --html-dir $out || (echo "Files are different, expected.")
+      diffoscope --no-default-limits "${a}" "${b}" --html-dir $out || (echo "Files are different, expected.")
     '';
 in
 rec {
