@@ -35,7 +35,7 @@ let
     '';
 in
 rec {
-  circt = runOnInputs circt.circt inputs;
-  circt-pp = runOnInputs circt.circt-pp inputs;
-  diff = diffEach circt circt-pp;
+  normal = runOnInputs circt.circt inputs;
+  pp = runOnInputs circt.circt-pp inputs;
+  diff = diffEach normal pp;
 }
