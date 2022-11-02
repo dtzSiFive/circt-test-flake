@@ -34,7 +34,11 @@ let
           --html "$o_d/$d.html" \
           --text "$o_d/$d.diff" \
           || (echo "Files are different, see output files for details")
-        echo "$d: <a href=\"$d/$d.html\">HTML</a> <a href=\"$d/$d.diff\">.diff</a> <br>" >> $out/index.html
+        diffoscope --no-default-limits "$a_d/$d.log" "$b_d/$d.log" \
+          --html "$o_d/$d-log.html" \
+          --text "$o_d/$d-log.diff" \
+          || (echo "Files are different, see output files for details")
+        echo "$d: <a href=\"$d/$d.html\">HTML</a> <a href=\"$d/$d.diff\">.diff</a> <a href=\"$d/$d-log.html\">(log diff)</a><br>" >> $out/index.html
       done
     '';
 in
