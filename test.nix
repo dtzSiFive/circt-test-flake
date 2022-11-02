@@ -4,8 +4,8 @@
 let
   runOnInputs = circt: input_dir:
     runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin circt) ]; } ''
-firtool --version
-exit 1
+      firtool --version
+      exit 1
     '';
   inputs = "${firrtl-src}/regress";
 in
