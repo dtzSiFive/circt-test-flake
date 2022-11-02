@@ -26,7 +26,10 @@
          circt = circt-nix.packages.${system};
          in {
          packages = {
-          default = pkgs.callPackage ./test.nix { inherit circt firrtl-src; };
+          default = import ./test.nix {
+            inherit circt firrtl-src;
+            inherit (pkgs) lib time runCommand;
+          };
          };
        });
 
