@@ -1,9 +1,11 @@
-{ runCommand, circt-nix, firrtl-src }:
+{ runCommand, circt, firrtl-src }:
 
 let
-  runOnInputs = firtool: input_dir:
-    runCommand "test-outputs" { } ''
+  runOnInputs = circt: input_dir:
+    runCommand "test-outputs" { nativeBuildInputs = [ circt ]; } ''
+firtool --version
+exit 1
     '';
   inputs = "${firrtl-src}/regress";
 in
-   runOnInputs circt-nix.circt inputs
+   runOnInputs circt.circt inputs

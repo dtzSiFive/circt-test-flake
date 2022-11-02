@@ -21,9 +21,12 @@
     , flake-compat, flake-utils
     , firrtl-src
     }: flake-utils.lib.eachDefaultSystem
-      (system: let pkgs = nixpkgs.legacyPackages.${system}; in {
+      (system: let
+         pkgs = nixpkgs.legacyPackages.${system};
+         circt = circt-nix.packages.${system};
+         in {
          packages = {
-          results = pkgs.callPackage ./test.nix { inherit circt-nix firrtl-src; };
+          default = pkgs.callPackage ./test.nix { inherit circt firrtl-src; };
          };
        });
 
