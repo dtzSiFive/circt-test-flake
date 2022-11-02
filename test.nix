@@ -1,4 +1,5 @@
-{ lib, time, runCommand
+{ lib, runCommand
+, time, diffoscope
 , circt, firrtl-src }:
 
 let
@@ -17,8 +18,24 @@ let
       done
     '';
   inputs = "${firrtl-src}/regress";
+
+  # TODO: control/other outputs, better interface.
+  diffEach = a: b: 
+    runCommand "diff-outputs" { nativeBuildInputs = [ diffoscope ]; } ''
+      for x in ${a}/*; do
+        d="$(basename "$x")"
+        a_d="${a}/$d"
+        b_d="${b}/$d"
+        o_d="$out/$d"
+        mkdir -p "$o_d"
+        diffoscope --no-default-limits "$a_d/$d.sv" "$b_d/$d.sv" \
+          --markdown "$o_d/$d.md" \
+          --html "$o_d/$d.html"
+      done
+    '';
 in
-{
+rec {
   circt = runOnInputs circt.circt inputs;
   circt-pp = runOnInputs circt.circt-pp inputs;
+  diff = diffEach circt circt-pp;
 }
