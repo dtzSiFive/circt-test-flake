@@ -11,11 +11,11 @@
         "slang-src": "slang-src"
       },
       "locked": {
-        "lastModified": 1667428713,
-        "narHash": "sha256-xiVLIX4ZTXTZJxiqOHX+oFBNbFGEjyKljlyWw1FsjU0=",
+        "lastModified": 1667432571,
+        "narHash": "sha256-BxqaNu75iMvnNpay7Rd8LgC+hIVoKSQTWT2tgcC79PY=",
         "owner": "dtzSiFive",
         "repo": "circt-nix",
-        "rev": "edb1521ac568407018d4aa95f1a0aef1a1ed85d5",
+        "rev": "3e63b5dad4a764719c55d5bd49f68ffd4321cb8a",
         "type": "github"
       },
       "original": {
@@ -27,11 +27,11 @@
     "circt-pp-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1667428634,
-        "narHash": "sha256-6KRSVgdXp3/rX3yL0BR+/4kLG8UzpCXikYMu4vhhJPM=",
+        "lastModified": 1667431387,
+        "narHash": "sha256-0lT6IJ2gNA7o0+NrkUviUNEBjHfoQcpoCDH4QfupxOg=",
         "owner": "llvm",
         "repo": "circt",
-        "rev": "9509532b5a1b94f58e6252f8a166bb49a02d2ded",
+        "rev": "d4cdb3a6dc0691ef6739b411cdb66b86becce8b1",
         "type": "github"
       },
       "original": {
