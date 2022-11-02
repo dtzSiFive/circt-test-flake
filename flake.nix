@@ -26,12 +26,12 @@
          circt = circt-nix.packages.${system};
          results = import ./test.nix {
            inherit circt firrtl-src;
-           inherit (pkgs) lib time runCommand;
+           inherit (pkgs) lib time runCommand linkFarm;
            diffoscope = pkgs.diffoscopeMinimal;
          };
          in {
            packages = results // {
-            default = results.diff;
+            default = results.join;
            };
          });
 

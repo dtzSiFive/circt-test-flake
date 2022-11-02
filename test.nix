@@ -1,4 +1,4 @@
-{ lib, runCommand
+{ lib, runCommand, linkFarm
 , time, diffoscope
 , circt, firrtl-src }:
 
@@ -41,4 +41,10 @@ rec {
   normal = runOnInputs circt.circt inputs;
   pp = runOnInputs circt.circt-pp inputs;
   diff = diffEach normal pp;
+
+  join = linkFarm "together" [
+    { name = "normal"; path = normal; }
+    { name = "pp"; path = pp; }
+    { name = "diff"; path = diff; }
+    ];
 }
