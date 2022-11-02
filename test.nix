@@ -3,8 +3,8 @@
 , circt, firrtl-src }:
 
 let
-  runOnInputs = circt: input_dir:
-    runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin circt) time ]; } ''
+  runOnInputs = c: input_dir:
+    runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin c) time ]; } ''
       firtool --version
 
       mkdir -p $out
