@@ -22,19 +22,7 @@ let
   # TODO: control/other outputs, better interface.
   diffEach = a: b: 
     runCommand "diff-outputs" { nativeBuildInputs = [ diffoscope ]; } ''
-      for x in ${a}/*; do
-        d="$(basename "$x")"
-        a_d="${a}/$d"
-        b_d="${b}/$d"
-        o_d="$out/$d"
-
-        mkdir -p "$o_d"
-        diffoscope --no-default-limits "$a_d/$d.sv" "$b_d/$d.sv" \
-          --max-page-diff-block-lines 100000 \
-          --html "$o_d/$d.html" \
-          --text "$o_d/$d.diff" \
-          || (echo "Files are different, see output files for details")
-      done
+      diffoscope --no-default-limits --max-page-diff-block-lines 100000 "${a}" "${b}" --html-dir $out || (echo "Files are different, expected.")
     '';
 in
 rec {
