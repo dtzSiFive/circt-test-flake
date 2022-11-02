@@ -35,6 +35,7 @@ let
           --text "$o_d/$d.diff" \
           || (echo "Files are different, see output files for details")
         diffoscope --no-default-limits "$a_d/$d.log" "$b_d/$d.log" \
+          --max-page-diff-block-lines 100000 \
           --html "$o_d/$d-log.html" \
           --text "$o_d/$d-log.diff" \
           || (echo "Files are different, see output files for details")
