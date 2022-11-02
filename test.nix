@@ -1,16 +1,17 @@
-{ lib, runCommand
+{ lib, time, runCommand
 , circt, firrtl-src }:
 
 let
   runOnInputs = circt: input_dir:
-    runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin circt) ]; } ''
+    runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin circt) time ]; } ''
       firtool --version
 
       mkdir -p $out
       for x in ${input_dir}/*.fir; do
-        BASE="$(basename $x)"
+        BASE="$(basename $x .fir)"
         OUT="$out/$BASE"
-        \time -v firtool "$x" -o "$OUT.sv" |& tee "$OUT.log"
+        mkdir -p $"$OUT"
+        \time -v firtool "$x" -o "$OUT/$BASE.sv" |& tee "$OUT/$BASE.log"
       done
     '';
   inputs = "${firrtl-src}/regress";
