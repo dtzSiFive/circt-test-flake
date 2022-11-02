@@ -26,7 +26,8 @@
          circt = circt-nix.packages.${system};
          results = import ./test.nix {
            inherit circt firrtl-src;
-           inherit (pkgs) lib diffoscope time runCommand;
+           inherit (pkgs) lib time runCommand;
+           diffoscope = pkgs.diffoscopeMinimal;
          };
          in {
            packages = results // {
