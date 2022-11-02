@@ -17,6 +17,7 @@
 
   outputs = { self
     , circt-nix
+    , nixpkgs
     , flake-compat, flake-utils
     , firrtl-src
     }: flake-utils.lib.eachDefaultSystem
