@@ -44,7 +44,10 @@ let
 
   # Gather inputs.
   firrtl-inputs = "${firrtl-src}/regress";
-  circt-perf-inputs = lib.sourceByRegex "${circt-perf-src}/regress" [ "test.*\\.fir" "chipyard.*\\.fir" ];
+  circt-perf-inputs = lib.sourceByRegex "${circt-perf-src}/regress" [
+   ''test.*\.fir''
+   ''chipyard.*\.hi\.fir''
+  ];
   inputs = symlinkJoin { name = "inputs"; paths = [ firrtl-inputs circt-perf-inputs ]; };
 in
 rec {
