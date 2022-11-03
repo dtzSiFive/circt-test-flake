@@ -25,9 +25,8 @@
       (system: let
          pkgs = nixpkgs.legacyPackages.${system};
          circt = circt-nix.packages.${system};
-         results = import ./test.nix {
+         results = pkgs.callPackages ./test.nix {
            inherit circt firrtl-src circt-perf-src;
-           inherit (pkgs) lib time runCommand linkFarm;
            diffoscope = pkgs.diffoscopeMinimal;
          };
          in {
