@@ -1,8 +1,12 @@
-{ lib, runCommand, linkFarm
+{ lib, runCommand, symlinkJoin, linkFarm
 , time, diffoscope
-, circt, firrtl-src }:
+, circt, firrtl-src, circt-perf-src }:
 
 let
+  firrtl-inputs = "${firrtl-src}/regress";
+  circt-perf-inputs = lib.sourceByRegex "${circt-perf-src}/regress" [ "test.*\\.fir" "chipyard.*\\.fir" ];
+  input_dir = symlinkJoin { name = "inputs"; paths = [ firrtl-inputs circt-perf-inputs ]; };
+
   runOnInputs = c: input_dir:
     runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin c) time ]; } ''
       firtool --version
@@ -17,7 +21,6 @@ let
           |& tee "$OUT/$BASE.log"
       done
     '';
-  inputs = "${firrtl-src}/regress";
 
   # TODO: control/other outputs, better interface.
   diffEach = a: b: 

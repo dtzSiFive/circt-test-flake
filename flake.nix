@@ -5,6 +5,8 @@
     circt-nix.url = "github:dtzSiFive/circt-nix";
     firrtl-src.url = "github:chipsalliance/firrtl";
     firrtl-src.flake = false;
+    circt-perf-src.url = "github:circt/perf";
+    circt-perf-src.flake = false;
 
     flake-utils.url = "github:numtide/flake-utils";
     # From README.md: https://github.com/edolstra/flake-compat
@@ -18,13 +20,13 @@
     , circt-nix
     , nixpkgs
     , flake-compat, flake-utils
-    , firrtl-src
+    , firrtl-src, circt-perf-src
     }: flake-utils.lib.eachSystem [ "x86_64-linux" /* "x86_64-darwin" */ ]
       (system: let
          pkgs = nixpkgs.legacyPackages.${system};
          circt = circt-nix.packages.${system};
          results = import ./test.nix {
-           inherit circt firrtl-src;
+           inherit circt firrtl-src circt-perf-src;
            inherit (pkgs) lib time runCommand linkFarm;
            diffoscope = pkgs.diffoscopeMinimal;
          };
