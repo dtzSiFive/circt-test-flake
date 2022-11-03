@@ -11,16 +11,32 @@
         "slang-src": "slang-src"
       },
       "locked": {
-        "lastModified": 1667432571,
-        "narHash": "sha256-BxqaNu75iMvnNpay7Rd8LgC+hIVoKSQTWT2tgcC79PY=",
+        "lastModified": 1667487413,
+        "narHash": "sha256-shBymuUzS2hT3kIPPmm2M6YvNa4piHUNkOk/M5/519s=",
         "owner": "dtzSiFive",
         "repo": "circt-nix",
-        "rev": "3e63b5dad4a764719c55d5bd49f68ffd4321cb8a",
+        "rev": "ad1ccca532406ab18056a42cedb4d5e7134d5cb6",
         "type": "github"
       },
       "original": {
         "owner": "dtzSiFive",
         "repo": "circt-nix",
+        "type": "github"
+      }
+    },
+    "circt-perf-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658527500,
+        "narHash": "sha256-Uo1B0sQ7aRM28CcqwQnxHnWF2SqJOubYQo8uN4zzzsU=",
+        "owner": "circt",
+        "repo": "perf",
+        "rev": "7155120531cd12e76b8df51e09b3d90b512caa0e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "circt",
+        "repo": "perf",
         "type": "github"
       }
     },
@@ -44,11 +60,11 @@
     "circt-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1667427030,
-        "narHash": "sha256-rVL+By84aSiUXhhXyQo0pNhrP1rs/nyXKh7QpeeL1kA=",
+        "lastModified": 1667484660,
+        "narHash": "sha256-gnn7QfvVDAFIYD6O2njjypqu5mjIg7HwINkl1QGY86A=",
         "owner": "llvm",
         "repo": "circt",
-        "rev": "5b8f763c8865da9fa4e33f37716a4bb60fd8ca8c",
+        "rev": "2500cf570bbc6c6d45940466f9421e93d3a49132",
         "type": "github"
       },
       "original": {
@@ -185,6 +201,7 @@
     "root": {
       "inputs": {
         "circt-nix": "circt-nix",
+        "circt-perf-src": "circt-perf-src",
         "firrtl-src": "firrtl-src",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_2",
@@ -194,11 +211,11 @@
     "slang-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1667351897,
-        "narHash": "sha256-VUf4vHl661E86Mzbnte2njvUMLexHGKIVKlQlFhVyyg=",
+        "lastModified": 1667470807,
+        "narHash": "sha256-QuoeQAoBV9or4DnyrC9W/VQ5odtQx613LiTl8meLew0=",
         "owner": "MikePopoloski",
         "repo": "slang",
-        "rev": "7c69231c13e84e8fb8b4ed94acac8857594d41aa",
+        "rev": "768c29571f516044c9c278fe8e3ee7f0e2c3ea03",
         "type": "github"
       },
       "original": {
