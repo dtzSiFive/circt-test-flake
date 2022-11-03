@@ -3,8 +3,8 @@
 , circt, firrtl-src, circt-perf-src }:
 
 let
-  runOnInputs = c: input_dir:
-    runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin c) time ]; } ''
+  runOnInputs = name: c: input_dir:
+    runCommand "test-outputs-${name}" { nativeBuildInputs = [ (lib.getBin c) time ]; } ''
       firtool --version
 
       mkdir -p $out
@@ -51,8 +51,8 @@ let
   inputs = symlinkJoin { name = "inputs"; paths = [ firrtl-inputs circt-perf-inputs ]; };
 in
 rec {
-  normal = runOnInputs circt.circt inputs;
-  pp = runOnInputs circt.circt-pp inputs;
+  normal = runOnInputs "normal" circt.circt inputs;
+  pp = runOnInputs "pp" circt.circt-pp inputs;
   diff = diffEach normal pp;
 
   join = linkFarm "together" [
