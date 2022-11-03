@@ -3,10 +3,6 @@
 , circt, firrtl-src, circt-perf-src }:
 
 let
-  firrtl-inputs = "${firrtl-src}/regress";
-  circt-perf-inputs = lib.sourceByRegex "${circt-perf-src}/regress" [ "test.*\\.fir" "chipyard.*\\.fir" ];
-  input_dir = symlinkJoin { name = "inputs"; paths = [ firrtl-inputs circt-perf-inputs ]; };
-
   runOnInputs = c: input_dir:
     runCommand "test-outputs" { nativeBuildInputs = [ (lib.getBin c) time ]; } ''
       firtool --version
@@ -45,6 +41,11 @@ let
         echo "$d: <a href=\"$d/$d.html\">HTML</a> <a href=\"$d/$d.diff\">.diff</a> <a href=\"$d/$d-log.html\">(log diff)</a><br>" >> $out/index.html
       done
     '';
+
+  # Gather inputs.
+  firrtl-inputs = "${firrtl-src}/regress";
+  circt-perf-inputs = lib.sourceByRegex "${circt-perf-src}/regress" [ "test.*\\.fir" "chipyard.*\\.fir" ];
+  inputs = symlinkJoin { name = "inputs"; paths = [ firrtl-inputs circt-perf-inputs ]; };
 in
 rec {
   normal = runOnInputs circt.circt inputs;
