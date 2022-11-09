@@ -31,7 +31,7 @@
          };
          in {
            packages = results // {
-            default = results.join;
+            default = results.diffs;
            };
          });
 

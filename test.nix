@@ -90,8 +90,8 @@ let
     ln -s ${path}/diff/*/ $out/
     cat ${path}/diff/index.html >> $out/index.html
   '') attrs));
-in {
-  join = combined linkedResults;
+in linkedResults // {
+  diffs = combined linkedResults;
 }
 #    name = "normal"; path = linkFarm 
 #  ];
