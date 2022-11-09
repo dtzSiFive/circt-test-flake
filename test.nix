@@ -37,12 +37,12 @@ let
         ++ lib.optional withDiff "--text=${outbase}.diff"
         ++ lib.optional withMD "--md=${outbase}.md"
         ++ [ '' || (echo "Files ${a} and ${b} are different, see output files (${outbase}*) for details") '']);
-     linkResult = { base,  name, ext }: ''<a href="${base}.${ext}">${name}</a> '';
+     linkResult = { base,  name, ext }: ''[<a href="${base}.${ext}">${name}</a>] '';
      genHTMLLine = results: lib.concatMapStrings linkResult results;
      resultsForOutputs = { base, html ? withHTML, diff ? withDiff, md ? withMD, namePrefix ? "" }:
        []
        ++ lib.optional html { inherit base; name = "${namePrefix}HTML"; ext = "html"; }
-       ++ lib.optional diff { inherit base; name = "${namePrefix}Diff"; ext = "diff"; }
+       ++ lib.optional diff { inherit base; name = "${namePrefix}Diff (raw)"; ext = "diff"; }
        ++ lib.optional md { inherit base; name = "${namePrefix}MD"; ext = "md"; };
      results =
        (resultsForOutputs {base="$d/$d";}) ++
